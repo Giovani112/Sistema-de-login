@@ -1,0 +1,121 @@
+/*Reset*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #F3F4F6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container do formulario */
+.container {
+    background: #1E3A8A;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    color: #fff;
+}
+
+h2 {
+    font-size: 28px;
+    text-transform: uppercase;
+    color: #1F2937;
+}
+
+h3 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Estilização do formulário e inputs */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    background: #ffffff;
+    border: solid 1px #aaa;
+    color: #1F2937;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+button {
+    margin-top: 10px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #1E3A8A;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* Links do rodapé */
+p {
+    font-size: 14px;
+    color: #1F2937;
+}
+
+a {
+    color: #1F2937;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: rgb(30, 58, 138);
+}
+/* ========================================= */
+/* AJUSTES RESPONSIVOS PARA CELULARES        */
+/* ========================================= */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+
+    .container {
+        max-width: 100%;      
+        min-height: 100vh;
+        border-radius: 0;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    input, button {
+        padding: 12px;
+    }
+}

@@ -4,12 +4,14 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "start": "node src/servidor.js"
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js"
     },
     "dependencies": {
-        "express": "5.2.1",
+        "bcryptjs": "3.0.3",
         "cors": "2.8.6",
-        "bcryptjs": "3.0.3"
+        "express": "5.2.1",
+        "nodemon": "^3.1.14"
     },
     "description": "",
     "main": "dadosUsuario.js",

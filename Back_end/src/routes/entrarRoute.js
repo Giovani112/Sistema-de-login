@@ -1,11 +1,10 @@
 import { Router } from "express";
 import bcrypt from 'bcryptjs';
-import { buscarUsuario } from './dadosUsuario.js';
-//sempre que for importar um modulo, colocar a extensão do arquivo (.js) no final."
+import { buscarUsuario } from '../models/dadosUsuario.js'; //alteração para receber os dados do usuario
 
 const rota = Router();
 
-//  recebe os dados do front
+// recebe os dados do front
 rota.post('/entrar', async (req, res) =>{
     const {nomeUsuario, senha} = req.body ?? {};
 
@@ -16,44 +15,35 @@ rota.post('/entrar', async (req, res) =>{
         });
     }
 
-
-    //da erro se deixcar os campos de resposta vazio
+    // dá erro se deixar os campos de resposta vazio
     if (!nomeUsuario.trim() || !senha || senha.length > 72){
         return res.status(400).json({
-            Mensagem: 'Preencha os campos corretamente'
+            Mensagem: 'Preencha os campos corretamente.'
         });
     }
-
 
     // busca as informações dentro do dadosUsuarios
     const usuarioEncontrado = await buscarUsuario(nomeUsuario);
 
-    //apos a comparação do nomeUsuario do front com o nomeUsuarido do banco
-    // caso senha um nomeUsuario errado ele roda este if
+    // caso não encontre o usuário
     if(!usuarioEncontrado){
         return res.status(401).json({
-            Mensagem: 'Usuario ou senha incorretos'
+            Mensagem: 'Usuário ou senha incorretos.' // Mensagem genérica
         });
     }
 
-
-    // vai comparar a senha digitada em hash para ver se esta correta
-    // bcrypt.compare é uma função dentro da biblioteca do bcrypt que compara
-    const senhaCorreta = await bcrypt.compare(
-        senha,
-        usuarioEncontrado.senha
-    );
+    // compara a senha digitada em hash
+    const senhaCorreta = await bcrypt.compare(senha, usuarioEncontrado.senha);
 
     if(!senhaCorreta){
-        return res.status(400).json({
-            Mensagem: 'Usuario ou senha incorretos, tente novamente!'
+        return res.status(401).json({ // Mudei para 401 aqui também
+            Mensagem: 'Usuário ou senha incorretos.' // Mensagem IDÊNTICA a de cima
         });
     }
 
-
+    // Sucesso
     return res.json({
-        Mensagem:'Login realizado com sucesso',
-
+        Mensagem: 'Login realizado com sucesso',
         usuario: {
             id: usuarioEncontrado.id,
             nome: usuarioEncontrado.nome,

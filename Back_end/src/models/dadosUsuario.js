@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 
-// usuario teste e sebga teste
+// usuario teste e senha teste
 const usuario = [
     {
         id: 1,
